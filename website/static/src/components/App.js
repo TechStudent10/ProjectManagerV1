@@ -5,6 +5,9 @@ import {
     Route
 } from 'react-router-dom';
 
+import Project from './Project';
+import CreateProject from './CreateProject';
+
 function App(props) {
     return (
         <div className="app">
@@ -13,13 +16,7 @@ function App(props) {
                     <Route exact path="/">
                         Homepage
                     </Route>
-                    <Route path="/project/:projectCode" render={(props) => {
-                        {token}
-                        <h1>
-                            eiouriogruogurguperogoier
-                        </h1>
-                        console.log(token);
-                    }} />
+                    <Route path="/project/:projectCode" component={Project} />
                     <Route path="/addProject">
                         Create a project
                     </Route>

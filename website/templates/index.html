@@ -16,8 +16,17 @@
         <div id="main">
             <div id="app"></div>
         </div>
-
-        <script>let token = "{{token}}";</script>
+        <script>
+            let tokens = {}
+        </script>
+        {% for t in token %}
+            {% with tk = token[t] %}
+                <script>
+                    tokens["{{t}}"] = "{{tk}}"
+                </script>
+            {% endwith %}
+        {% endfor %}
+        <!-- <script>let token = "{{token}}";</script> -->
         <script src="{{ url_for('static', filename='frontend/main.js') }}"></script>
     </body>
 </html>
