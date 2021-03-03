@@ -17,9 +17,7 @@ function App(props) {
                         Homepage
                     </Route>
                     <Route path="/project/:projectCode" component={Project} />
-                    <Route path="/addProject">
-                        Create a project
-                    </Route>
+                    <Route path="/create" component={CreateProject} />
                 </Switch>
             </Router>
         </div>

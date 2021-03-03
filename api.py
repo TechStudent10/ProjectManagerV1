@@ -1,6 +1,12 @@
-from flask import Blueprint, request, jsonify
+from flask import (
+    Blueprint,
+    request,
+    jsonify,
+    redirect,
+    url_for
+)
 from utils import body
-from objects import Task
+from objects import Task, Project
 
 api = Blueprint('api', __name__)
 projects = {
@@ -48,7 +54,7 @@ def addTask():
 
     if projectCode in projects:
         task = Task(name, description, projectCode)
-        projects[projectCode]['tasks'][task._id] = task.__dict__
+        projects[projectCode]['tasks'][task._id] = task.toJSON()
         return {**task.__dict__, 'projectIsValid': True}, 200
     return jsonify(message="Project not found", projectIsValid=False)
 
@@ -65,3 +71,15 @@ def completeTask():
             return jsonify(complete=projects[projectCode]['tasks'][taskCode]['complete'])
     else:
         return jsonify(message="Project not found", error=True)
+
+@api.route('/createProject', methods=['POST'])
+def createProject():
+    json = request.json
+
+    title = json.get('title')
+    description = json.get('description')
+    project_link = json.get('project_link')
+
+    project = Project(title, description, project_link)
+    projects[project._id] = project.toJSON()
+    return {'_id': project._id}
