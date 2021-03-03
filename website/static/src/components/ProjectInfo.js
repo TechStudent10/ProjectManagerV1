@@ -5,10 +5,11 @@ import AddTask from './AddTask';
 function ProjectInfo(projectInfo){
     const [addTask, changeAddTask] = useState(false)
     const project = projectInfo.projectInfo
+    console.log(project._id)
 
     return (
         <div>
-            {addTask ? <AddTask tasks={project.tasks} onClose={changeAddTask} /> : <>
+            {addTask ? <AddTask tasks={project.tasks} onClose={changeAddTask} projectCode={project._id} /> : <>
                 <h1>{project.title}</h1>
                 <hr />
                 <p>{project.description}</p>

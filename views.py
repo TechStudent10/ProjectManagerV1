@@ -15,6 +15,6 @@ def project(projectCode):
         return react()
     return "Project not found"
 
-@views.route('/addProject')
-def addProject():
+@views.route('/create')
+def createProject():
     return react()

@@ -4,9 +4,9 @@ import Task from './Task';
 function Tasks({tasks}) {
     return (
         <div className="tasks">
-            {tasks.map((task) => {
+            {Object.keys(tasks).map((key) => {
                 return <>
-                    <Task task={task} />
+                    <Task task={tasks[key]} />
                     <hr />
                 </>
             })}
